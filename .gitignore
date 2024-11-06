@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+.terraform/
+.terraform
+*hcl
+*tfstate
+*tfstate.backup
+install.sh
+myenv/
+

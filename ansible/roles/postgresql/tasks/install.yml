@@ -1,0 +1,9 @@
+- name: Install PostgreSQL
+  apt:
+    name: "postgresql-{{ postgres_version }}"
+    state: present
+
+- name: Configure PostgreSQL
+  template:
+    src: postgresql.conf.j2
+    dest: /etc/postgresql/{{ postgres_version }}/main/postgresql.conf

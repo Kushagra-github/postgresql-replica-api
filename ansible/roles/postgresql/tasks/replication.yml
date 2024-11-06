@@ -1,0 +1,9 @@
+- name: Enable replication
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/{{ postgres_version }}/main/pg_hba.conf
+
+- name: Restart PostgreSQL for replication
+  service:
+    name: postgresql
+    state: restarted

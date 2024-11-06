@@ -1,0 +1,14 @@
+---
+- hosts: primary
+  roles:
+    - postgresql
+  vars:
+    max_connections: "{{ max_connections }}"
+    shared_buffers: "{{ shared_buffers }}"
+
+- hosts: replicas
+  roles:
+    - postgresql
+  vars:
+    replication: true
+    primary_conninfo: "host={{ lookup('aws_ssm', '/postgresql/private_ip', region='ap-south-1', with_decryption=true) }} user=replication password={{ lookup('aws_ssm', '/postgresql/replication_password', region='ap-south-1', with_decryption=true) }}"
